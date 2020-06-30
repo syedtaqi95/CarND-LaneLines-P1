@@ -82,11 +82,13 @@ This stage filters out all the lines detected outside our region of interest, wh
 
 ![canny_edges_masked]![original]
 
-**8. Hough transform and drawing the Hough lines (explain draw_lines here)**
+**8. Hough transform and drawing the Hough lines**
 
 I used the provided *hough_lines* function to apply the Hough transform and extract the Hough lines.
 
-I wrote the *draw_lines_extrapolated* function to replace the original *draw_lines* function. This was done to extrapolate the lines and make the output similar to that in *P1_example.mp4*. First, I computed the slope of each Hough line and sorted them into left and right lanes. Next, I used numpy's *polyfit* function to generate a 1-degree polynomial (i.e. a line) based on the coordinates of the Hough lines for each lane. I found that I could use numpy's *poly1d* function to generate the y-values of the polynomial (rather than manually computing "y = mx + b"). I then selected coordinates such that the lines would extend till the image boundary and drew these lines using OpenCV's *line* function.
+I wrote the *draw_lines_extrapolated* function to replace the original *draw_lines* function. This was done to extrapolate the lines and make the output similar to that in *P1_example.mp4*. 
+
+First, I computed the slope of each Hough line and sorted them into left and right lanes. Next, I used numpy's *polyfit* function to generate a 1-degree polynomial (i.e. a line) based on the coordinates of the Hough lines for each lane. I found that I could use numpy's *poly1d* function to generate the y-values of the polynomial (rather than manually computing "y = mx + b"). I then selected coordinates such that the lines would extend till the image boundary and drew these lines using OpenCV's *line* function.
 
 ![line_image]![original]
 
